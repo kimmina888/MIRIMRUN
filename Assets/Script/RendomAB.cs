@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RendomAB : MonoBehaviour
 {
-    blic GameObject[] prefabs; //찍어낼 게임 오브젝트를 넣어요
+    public GameObject[] prefabs; //찍어낼 게임 오브젝트를 넣어요
                                  //배열로 만든 이유는 게임 오브젝트를
                                  //다양하게 찍어내기 위해서 입니다
     private BoxCollider area;    //박스콜라이더의 사이즈를 가져오기 위함
