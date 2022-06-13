@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     public int JumpPower = 7;
     public float MoveSpeed = 5.0f;
 
+
+    private bool slow;
+    private float slowTime;
     private Rigidbody rigid;
     private bool IsJumping;
     private bool IsAlive;
@@ -26,6 +29,21 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(slow && slowTime >= 5)
+        {
+            //10초가 넘어가면 slow 해제
+            slow = false;
+            slowTime = 0;
+        }
+        else
+        {
+            slowTime += Time.deltaTime;
+        }
+
+        JumpPower = slow ? 4 : 5;
+        MoveSpeed = slow ? 0.8f : 5.0f;
+        
+         
         Move();
         Jump();
         if (!IsAlive)
@@ -75,6 +93,10 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("IsAlive");
             IsAlive = false;
+        }
+        if (collision.gameObject.CompareTag("Hurdle"))
+        {
+            slow = true; //장애물에 닿으면 느려지도록
         }
     }
 
