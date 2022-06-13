@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -190,6 +190,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrier
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fc7e863a8c68106469f94461e8a8cec1, type: 3}
+      propertyPath: m_TagString
+      value: Hurdle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc7e863a8c68106469f94461e8a8cec1, type: 3}
 --- !u!1 &14151944 stripped
@@ -209,6 +213,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d275dcac64a815045be4c463f2974bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabs: []
+  count: 3
+--- !u!65 &14151949
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14151944}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.954095, y: 1.7036511, z: 0.2520962}
+  m_Center: {x: -0.0026276112, y: 0.85182554, z: -0.029992715}
 --- !u!1 &70915837
 GameObject:
   m_ObjectHideFlags: 0
