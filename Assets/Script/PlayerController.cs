@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool IsJumping;
     private bool IsAlive;
     private Animator animator;
-    private int direction = 0; //0 : ¾Õ, 1 : ¿À¸¥, 2: µÚ, 3 : ¿Þ 
+    private int direction = 0; //0 : ï¿½ï¿½, 1 : ï¿½ï¿½ï¿½ï¿½, 2: ï¿½ï¿½, 3 : ï¿½ï¿½ 
     private Vector3 moveVec;
     private bool clear = false;
 
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         if(slow && slowTime >= 5)
         {
-            //10ÃÊ°¡ ³Ñ¾î°¡¸é slow ÇØÁ¦
+            //10ï¿½Ê°ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½ slow ï¿½ï¿½ï¿½ï¿½
             slow = false;
             slowTime = 0;
         }
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
             if (!IsJumping)
             {
                 IsJumping = true;
-                //ForceMode.Impulse : ÂªÀº ½Ã°£¿¡ ÈûÀ» Ãß°¡
+                //ForceMode.Impulse : Âªï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
                 rigid.AddForce(Vector3.up * currentJumpPower, ForceMode.Impulse);
             }
             else
@@ -101,11 +101,11 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Hurdle"))
         {
-            slow = true; //Àå¾Ö¹°¿¡ ´êÀ¸¸é ´À·ÁÁöµµ·Ï
+            slow = true; //ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
         if (collision.gameObject.CompareTag("Clear"))
         {
-            //Å¬¸®¾î! Áö³­ ½Ã°£ ÀúÀå, ·©Å· È­¸éÀ¸·Î ÀÌµ¿
+            //Å¬ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Å· È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
             Debug.Log("hi");
             clear = true;
         }
