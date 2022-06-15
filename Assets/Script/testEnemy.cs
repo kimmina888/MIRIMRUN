@@ -11,6 +11,7 @@ public class testEnemy : MonoBehaviour
     private int direction = 0; //0 : ¾Õ, 1 : ¿À¸¥, 2: µÚ, 3 : ¿Þ 
     private Vector3 moveVec;
 
+
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
@@ -25,7 +26,10 @@ public class testEnemy : MonoBehaviour
 
     void Update()
     {
-        Move();
+        if (IsAlive)
+        {
+            Move();
+        }
     }
 
     void Move()
@@ -47,9 +51,19 @@ public class testEnemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Melee"))
+        
+        if (collision.gameObject.transform.Find("Root/center/Hips/Spine/Chest/Upper_Chest/Clavicle_R/Upper_Arm_R/Lower_Arm_R/Hand_R/WeaponPoint_GreatSword/Prop_03_greatsword").GetComponent<BoxCollider>().enabled)
         {
-            IsAlive = false;
+            StartCoroutine("Die");
+            Debug.Log("dd");
         }
+    }
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(0.1f);
+        //EffectManager.PlayEffect(transform.position); //ÀÌÆåÆ®,,
+        this.gameObject.active = false;
+        
     }
 }

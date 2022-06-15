@@ -57,8 +57,11 @@ public class PlayerController : MonoBehaviour
         
         GetInput();
         Attak();
-        Move();
-        Jump();
+        if (!isDamage)
+        {
+            Move();
+            Jump();
+        }
         if (!IsAlive)
         {
             SceneManager.LoadScene("gameOver");
@@ -121,7 +124,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator OnDamage()
     {
         isDamage = true;
-        
+
+        animator.SetTrigger("stop");
         yield return new WaitForSeconds(1f);
 
         isDamage = false;
@@ -134,7 +138,7 @@ public class PlayerController : MonoBehaviour
         {
             IsJumping = false;
         }
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && !weapon.swingRunning)//weapon.swingRunning은 공격중
         {
             if(!isDamage)
                 StartCoroutine("OnDamage");
