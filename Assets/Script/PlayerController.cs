@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
         }
         if (clear)
         {
+            Ranking.clearTime = Timer.time;
             SceneManager.LoadScene("gameClear");
         }
     }
@@ -109,7 +110,7 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if (!IsJumping)
+            if (transform.position.y < 3)
             {
                 IsJumping = true;
                 rigid.AddForce(Vector3.up * currentJumpPower, ForceMode.Impulse);

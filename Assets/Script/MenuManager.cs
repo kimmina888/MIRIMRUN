@@ -8,7 +8,6 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     public void replay()
@@ -29,6 +28,17 @@ public class MenuManager : MonoBehaviour
     public void GoMain()
     {
         SceneManager.LoadScene("Main");
+    }
+
+    public void GoSchoolHard()
+    {
+        SceneManager.LoadScene("school_hard");
+    }
+
+    public void GoSchoolNormal()
+    {
+        Debug.Log("normal");
+        SceneManager.LoadScene("school_normal");
     }
 
     public void GoSchool()

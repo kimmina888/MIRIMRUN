@@ -29,4 +29,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameList.unity
     guid: fc0115289945ce14b99db967b01e95b2
+  - enabled: 1
+    path: Assets/Scenes/school2.unity
+    guid: 8779240341e1c9f4eaf3ae51f3113eef
+  - enabled: 1
+    path: Assets/Scenes/school_hard.unity
+    guid: 2d0ab316020b38348bbf876d86ea350f
+  - enabled: 1
+    path: Assets/Scenes/school_normal.unity
+    guid: 653e9647c4d9e604d8b96eef0f70edff
+  - enabled: 1
+    path: Assets/Scenes/school.unity
+    guid: eb49f0212239d0245ab043a44e5c7a79
   m_configObjects: {}
