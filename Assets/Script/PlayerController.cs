@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
     {
         hAxis = Input.GetAxis("Horizontal");
         vAxis = Input.GetAxis("Vertical");
-        fDown = Input.GetButtonDown("Fire1"); //마우스 왼쪽
+        fDown = Input.GetButtonDown("Fire1"); //z
     }
 
     void Attak()
@@ -151,6 +151,10 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("hi");
             clear = true;
+        }
+        if (collision.gameObject.CompareTag("GameOver"))
+        {
+            IsAlive = false;
         }
     }
 

@@ -16,6 +16,7 @@ TagManager:
   - Hurdle
   - Clear
   - Melee
+  - GameOver
   layers:
   - Default
   - TransparentFX

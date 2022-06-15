@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    
     public enum Type { Melee, Range};//Melee은 근접, Range는 원거리
     public Type type;
     public int damage;
@@ -12,17 +13,27 @@ public class Weapon : MonoBehaviour
     public TrailRenderer trailEffect; //효과 
     public bool swingRunning = false;
 
+    AudioSource audio;
+
+    private void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
+
     public void Use()
     {
         if (type == Type.Melee)
         {
             StopCoroutine("Swing"); //코루틴 작동 아예 중지
+            audio.enabled = false;
             StartCoroutine("Swing");
+
         }
     }
 
     IEnumerator Swing()
     {
+        audio.enabled = true;
         swingRunning = true;
         //코루틴은 메인 루틴과 Swing()함수를 같이 실행하는것...
 
