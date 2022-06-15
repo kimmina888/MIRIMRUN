@@ -15,6 +15,7 @@ TagManager:
   - button f6
   - Hurdle
   - Clear
+  - Melee
   layers:
   - Default
   - TransparentFX

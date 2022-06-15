@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class testEnemy : MonoBehaviour
@@ -46,7 +47,7 @@ public class testEnemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Melee"))
         {
             IsAlive = false;
         }

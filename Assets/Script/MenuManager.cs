@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
 
     public void replay()
     {
-        SceneManager.LoadScene("EnemyTestMap");
+        SceneManager.LoadScene("AttackTest");
     }
 
     // Update is called once per frame

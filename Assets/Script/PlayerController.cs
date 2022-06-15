@@ -8,17 +8,28 @@ public class PlayerController : MonoBehaviour
     public int JumpPower = 7;
     public float MoveSpeed = 5.0f;
 
-    private float currentMoveSpeed;
-    private float currentJumpPower;
-    private bool slow;
-    private float slowTime;
-    private Rigidbody rigid;
-    private bool IsJumping;
-    private bool IsAlive;
-    private Animator animator;
-    private int direction = 0; //0 : ��, 1 : ����, 2: ��, 3 : �� 
-    private Vector3 moveVec;
-    private bool clear = false;
+    float currentMoveSpeed;
+    float currentJumpPower;
+    bool slow;
+    float slowTime;
+    Rigidbody rigid;
+    bool IsJumping;
+    bool IsAlive;
+    Animator animator;
+    int direction = 0; //0 : ��, 1 : ����, 2: ��, 3 : �� 
+    Vector3 moveVec;
+    bool clear = false;
+    bool isDamage; //무적 타임
+
+    bool fDown; //
+    bool isFireReady; //준비 완료
+    float fireDelay; //공격 딜레이
+
+    public Weapon weapon;
+
+    //key
+    float hAxis;
+    float vAxis;
 
     void Start()
     {
@@ -33,7 +44,6 @@ public class PlayerController : MonoBehaviour
     {
         if(slow && slowTime >= 5)
         {
-            //10�ʰ� �Ѿ�� slow ����
             slow = false;
             slowTime = 0;
         }
@@ -45,7 +55,8 @@ public class PlayerController : MonoBehaviour
         currentJumpPower = slow ? JumpPower*0.8f : JumpPower;
         currentMoveSpeed = slow ? MoveSpeed*0.2f : MoveSpeed;
         
-         
+        GetInput();
+        Attak();
         Move();
         Jump();
         if (!IsAlive)
@@ -58,11 +69,31 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void GetInput()
+    {
+        hAxis = Input.GetAxis("Horizontal");
+        vAxis = Input.GetAxis("Vertical");
+        fDown = Input.GetButtonDown("Fire1"); //마우스 왼쪽
+    }
+
+    void Attak()
+    {
+        if (weapon == null)
+            return;
+        fireDelay += Time.deltaTime;
+        isFireReady = weapon.rate < fireDelay; //공격 가능한지
+
+        if(fDown && isFireReady)
+        {
+            weapon.Use(); //무기사용
+            animator.SetTrigger("doSwing");
+            fireDelay = 0;
+        }
+
+    }
+
     void Move()
     {
-        float hAxis = Input.GetAxisRaw("Horizontal");
-        float vAxis = Input.GetAxisRaw("Vertical");
-
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;
 
         transform.position += moveVec * currentMoveSpeed * Time.deltaTime;
@@ -78,7 +109,6 @@ public class PlayerController : MonoBehaviour
             if (!IsJumping)
             {
                 IsJumping = true;
-                //ForceMode.Impulse : ª�� �ð��� ���� �߰�
                 rigid.AddForce(Vector3.up * currentJumpPower, ForceMode.Impulse);
             }
             else
@@ -86,6 +116,16 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+    }
+
+    IEnumerator OnDamage()
+    {
+        isDamage = true;
+        
+        yield return new WaitForSeconds(1f);
+
+        isDamage = false;
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -96,8 +136,8 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("IsAlive");
-            IsAlive = false;
+            if(!isDamage)
+                StartCoroutine("OnDamage");
         }
         if (collision.gameObject.CompareTag("Hurdle"))
         {
@@ -105,7 +145,6 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Clear"))
         {
-            //Ŭ����! ���� �ð� ����, ��ŷ ȭ������ �̵�
             Debug.Log("hi");
             clear = true;
         }
