@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Ranking : MonoBehaviour
 {
+
+    public InputField curInputName;
+    public static InputField InputName;
     public Text TimePrint;
     public static float clearTime;
 
@@ -11,5 +14,9 @@ public class Ranking : MonoBehaviour
     void Start()
     {
         TimePrint.text = ((int)clearTime).ToString()+"√ ";
+    }
+    private void Update()
+    {
+        InputName = curInputName;
     }
 }

@@ -61,9 +61,31 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("GameList");
     }
 
+    public void GoGameClearH()
+    {
+        SceneManager.LoadScene("gameClearH");
+    }
+
+    public void GoGameClearN()
+    {
+        SceneManager.LoadScene("gameClearN");
+    }
+
     public void SelectAvatar()
     {
         SceneManager.LoadScene("SelectAvatar");
+    }
+
+    public void GoRankingHard()
+    {
+        Debug.Log("Ranking_hard");
+        SceneManager.LoadScene("Ranking_hard");
+    }
+
+    public void GoRankingNormal()
+    {
+        Debug.Log("Ranking_normal");
+        SceneManager.LoadScene("Ranking_normal");
     }
 
     // Update is called once per frame

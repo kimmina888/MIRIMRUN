@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     //font-size = 40;
+    public static InputField InputName;
     public static float time;
     public Text TimePrint;
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class Timer : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        TimePrint.text = ((int)(time)).ToString();
+        TimePrint.text = ((int)(time)).ToString() + "√ !";
+
     }
 }

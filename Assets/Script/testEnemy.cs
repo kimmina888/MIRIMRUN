@@ -4,7 +4,8 @@ using UnityEngine;
 public class testEnemy : MonoBehaviour
 {
     public float MoveSpeed = 60.0f;
-
+    public PlayerController player;
+    
     private Rigidbody rigid;
     private bool IsAlive;
     private Animator animator;
@@ -64,6 +65,8 @@ public class testEnemy : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         //EffectManager.PlayEffect(transform.position); //¿Ã∆Â∆Æ,,
         this.gameObject.active = false;
-        
+        player.itemEffectType = PlayerController.ItemEffectType.Fast;
+        player.itemEffect = true;
+ 
     }
 }

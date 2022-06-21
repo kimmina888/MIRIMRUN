@@ -17,6 +17,7 @@ TagManager:
   - Clear
   - Melee
   - GameOver
+  - RandomItem
   layers:
   - Default
   - TransparentFX

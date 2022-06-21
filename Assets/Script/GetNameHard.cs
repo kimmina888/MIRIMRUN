@@ -6,18 +6,13 @@ using UnityEngine.UI;
 
 public class GetNameHard : MonoBehaviour
 {
-    public InputField InputNameEasy;
-    public float time;
-    public string username;
-    public userClass user;
-    // Start is called before the first frame update
     Plugin plugin;
 
     void Awake()
     {
         plugin = Plugin.GetInstance();
 
-        plugin.RankingRecord("mirimrun123-RANK-D76F2474-FC33C14A", (int)user.user_time, user.user_name, (state, message, rawData, dictionary) =>
+        plugin.RankingRecord("mirimrun123-RANK-D76F2474-FC33C14A", (int)Timer.time, Ranking.InputName.text, (state, message, rawData, dictionary) =>
         {
             if (state.Equals(Configure.PN_API_STATE_SUCCESS))
             {
@@ -39,7 +34,7 @@ public class GetNameHard : MonoBehaviour
     }
     void Start()
     {
-        user.user_name = InputNameEasy.text;
+        MakeID();
         Awake();
     }
 

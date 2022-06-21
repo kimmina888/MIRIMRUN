@@ -8,10 +8,22 @@ public class PlayerController : MonoBehaviour
     public int JumpPower = 7;
     public float MoveSpeed = 5.0f;
 
+    public enum ItemEffectType{
+        Basic,
+        Normal,
+        Slow,
+        Fast,
+        Big,
+        Small
+    }
+
     float currentMoveSpeed;
     float currentJumpPower;
     bool slow;
     float slowTime;
+    public bool itemEffect;
+    public ItemEffectType itemEffectType = ItemEffectType.Normal;
+    float itemEffectTime;
     Rigidbody rigid;
     bool IsJumping;
     bool IsAlive;
@@ -38,6 +50,7 @@ public class PlayerController : MonoBehaviour
         Physics.gravity = new Vector3(0, -10f, 0);
         IsJumping = false;
         IsAlive = true;
+        itemEffect = false;
     }
 
     void Update()
@@ -52,9 +65,41 @@ public class PlayerController : MonoBehaviour
             slowTime += Time.deltaTime;
         }
 
-        currentJumpPower = slow ? JumpPower*0.8f : JumpPower;
-        currentMoveSpeed = slow ? MoveSpeed*0.2f : MoveSpeed;
-        
+        if (itemEffect && itemEffectTime >= 5)
+        {
+            itemEffect = false;
+            itemEffectTime = 0;
+            itemEffectType = ItemEffectType.Normal;
+        }
+        else
+        {
+            itemEffectTime += Time.deltaTime;
+        }
+
+        currentJumpPower = slow ? JumpPower * 0.8f : JumpPower;
+        currentMoveSpeed = slow ? MoveSpeed * 0.2f : MoveSpeed;
+
+        switch (itemEffectType)
+        {
+            case ItemEffectType.Normal:
+                transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                break;
+            case ItemEffectType.Slow:
+                currentJumpPower = JumpPower * 0.8f;
+                currentMoveSpeed = MoveSpeed * 0.2f;
+                break;
+            case ItemEffectType.Fast:
+                currentJumpPower = JumpPower * 1.0f;
+                currentMoveSpeed = MoveSpeed * 1.2f;
+                break;
+            case ItemEffectType.Big: 
+                transform.localScale = new Vector3(3.0f, 3.0f, 3.0f);
+                break;
+            case ItemEffectType.Small:
+                transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                break;
+        }
+
         GetInput();
         Attak();
         if (!isDamage)
@@ -69,7 +114,14 @@ public class PlayerController : MonoBehaviour
         if (clear)
         {
             Ranking.clearTime = Timer.time;
-            SceneManager.LoadScene("gameClear");
+            if (SceneManager.GetActiveScene().Equals("school_hard"))
+            {
+                SceneManager.LoadScene("gameClearH");
+            }
+            else
+            {
+                SceneManager.LoadScene("gameClearN");
+            }
         }
     }
 
@@ -150,12 +202,20 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Clear"))
         {
-            Debug.Log("hi");
             clear = true;
         }
         if (collision.gameObject.CompareTag("GameOver"))
         {
             IsAlive = false;
+        }
+        if (collision.gameObject.CompareTag("RandomItem"))
+        {
+            //아이템을 먹음. 랜덤으로 효과 적용
+            //ItemEffectType는 index가 0부터 시작
+
+            itemEffectType = (ItemEffectType)Random.Range(1, 5); 
+            itemEffect = true;
+            collision.gameObject.SetActive(false);
         }
     }
 

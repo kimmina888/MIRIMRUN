@@ -4,19 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GetName : MonoBehaviour
+public class GetNameNormal : MonoBehaviour
 {
-    public InputField InputNameEasy;
     public float time;
     public string username;
     // Start is called before the first frame update
     Plugin plugin;
 
-    void Awake(userClass user)
+    void Awake()
     {
         plugin = Plugin.GetInstance();
 
-        plugin.RankingRecord("mirimrun123-RANK-4E6402CC-765DB9D7", (int)user.user_time, user.user_name, (state, message, rawData, dictionary) => {
+        plugin.RankingRecord("mirimrun123-RANK-4E6402CC-765DB9D7", (int)Timer.time, Ranking.InputName.text, (state, message, rawData, dictionary) => {
             if (state.Equals(Configure.PN_API_STATE_SUCCESS))
             {
                 Debug.Log("Success");
@@ -36,8 +35,8 @@ public class GetName : MonoBehaviour
     }
     void Start(userClass user)
     {
-        user.user_name = InputNameEasy.text;
-        Awake(user);
+        MakeID();
+        Awake();
     }
 
     // Update is called once per frame
