@@ -113,15 +113,7 @@ public class PlayerController : MonoBehaviour
         }
         if (clear)
         {
-            Ranking.clearTime = Timer.time;
-            if (SceneManager.GetActiveScene().Equals("school_hard"))
-            {
-                SceneManager.LoadScene("gameClearH");
-            }
-            else
-            {
-                SceneManager.LoadScene("gameClearN");
-            }
+            SceneManager.LoadScene("gameClear");
         }
     }
 

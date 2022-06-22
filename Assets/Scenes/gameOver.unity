@@ -613,7 +613,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1175794292}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: replay
+        m_MethodName: GoSchool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -867,7 +867,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "main\uC73C\uB85C"
+  m_Text: "\uB2E4\uC2DC \uD558\uAE30"
 --- !u!222 &1948970083
 CanvasRenderer:
   m_ObjectHideFlags: 0

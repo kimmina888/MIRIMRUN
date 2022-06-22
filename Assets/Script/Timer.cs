@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Timer : MonoBehaviour
 {
@@ -13,14 +15,21 @@ public class Timer : MonoBehaviour
     void Start()
     {
         time = 0f;
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        TimePrint.text = ((int)(time)).ToString() + "√ !";
-
+        if (SceneManager.GetActiveScene().name.Equals("school_hard")||
+            SceneManager.GetActiveScene().name.Equals("school_normal"))
+        {
+            time += Time.deltaTime;
+            TimePrint.text = ((int)(time)).ToString() + "√ !";
+        }
+        else
+        {
+            TimePrint.text = ((int)(time)).ToString() + "√ ";
+        }
     }
 }

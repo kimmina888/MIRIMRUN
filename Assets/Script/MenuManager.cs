@@ -35,6 +35,11 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("school_hard");
     }
 
+    public void GameEnd()
+    {
+        Application.Quit();
+    }
+
     public void GoSchoolNormal()
     {
         Debug.Log("normal");
