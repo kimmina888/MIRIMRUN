@@ -9557,6 +9557,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: jsEnemy2
       objectReference: {fileID: 0}
+    - target: {fileID: 1680899477846351453, guid: 3843f8e7b1231a14f970421b24052be8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838717337185969849, guid: 3843f8e7b1231a14f970421b24052be8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3352543483114104940, guid: 3843f8e7b1231a14f970421b24052be8, type: 3}
       propertyPath: m_RootOrder
       value: 0

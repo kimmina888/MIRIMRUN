@@ -11,10 +11,15 @@ public class testEnemy : MonoBehaviour
     private Animator animator;
     private int direction = 0; //0 : ¾Õ, 1 : ¿À¸¥, 2: µÚ, 3 : ¿Þ 
     private Vector3 moveVec;
-
+    AudioSource audioSource;
+    MeshRenderer meshRenderer;
+    SphereCollider sphereCollider;
 
     void Start()
     {
+        meshRenderer = this.gameObject.GetComponent<MeshRenderer>();
+        audioSource = this.gameObject.GetComponent<AudioSource>();
+        sphereCollider = this.gameObject.GetComponent<SphereCollider>();
         rigid = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         IsAlive = true;
@@ -31,6 +36,7 @@ public class testEnemy : MonoBehaviour
         {
             Move();
         }
+
     }
 
     void Move()
@@ -55,6 +61,7 @@ public class testEnemy : MonoBehaviour
         
         if (collision.gameObject.transform.Find("Root/center/Hips/Spine/Chest/Upper_Chest/Clavicle_R/Upper_Arm_R/Lower_Arm_R/Hand_R/WeaponPoint_GreatSword/Prop_03_greatsword").GetComponent<BoxCollider>().enabled)
         {
+            IsAlive = false;
             StartCoroutine("Die");
             Debug.Log("dd");
         }
@@ -62,7 +69,10 @@ public class testEnemy : MonoBehaviour
 
     IEnumerator Die()
     {
-        yield return new WaitForSeconds(0.1f);
+        this.audioSource.Play();
+        meshRenderer.enabled = false;
+        sphereCollider.enabled = false;
+        yield return new WaitForSeconds(1.0f);
         //EffectManager.PlayEffect(transform.position); //ÀÌÆåÆ®,,
         this.gameObject.active = false;
         player.itemEffectType = PlayerController.ItemEffectType.Fast;

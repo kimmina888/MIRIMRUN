@@ -205,7 +205,7 @@ public class PlayerController : MonoBehaviour
             //아이템을 먹음. 랜덤으로 효과 적용
             //ItemEffectType는 index가 0부터 시작
 
-            itemEffectType = (ItemEffectType)Random.Range(1, 5); 
+            itemEffectType = (ItemEffectType)Random.Range(1, 6); 
             itemEffect = true;
             collision.gameObject.SetActive(false);
         }
